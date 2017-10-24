@@ -14,7 +14,6 @@ const wUnits = 'metric';
 const wAppId = '04ae3ab01b0f8351d05831a7f637a508';
 const wUrl = wHost + wpath + '?id=' + wId + '&UNITS=' + wUnits + '&APPID=' + wAppId;
 
-//console.log(wUrl);
 
 // Fungerar!
 request({ url: wUrl, json: true }, function(error, response, weatherData) {
@@ -83,9 +82,3 @@ request({ url: wUrl, json: true }, function(error, response, weatherData) {
 // };
 // xmlhttp.open("GET", wUrl, true);
 // xmlhttp.send();
-
-var d = new Date();
-var t = d.getTime();
-
-
-console.log(wUrl);
