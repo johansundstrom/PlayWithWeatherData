@@ -26,7 +26,7 @@ request({ url: wUrl, json: true }, function(error, response, weatherData) {
             //db.collection("templog").insertOne(myobj, function(err, res) {
             db.collection("templog").insertOne(weatherData, function(err, res) {
                 if (err) throw err;   
-                console.log("1 document almost inserted");   
+                console.log("1 document inserted in collection 'templog'");
                 db.close();
             });
         })
