@@ -1,11 +1,11 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 
-
 var MongoClient = require('mongodb').MongoClient;
-var dbUrl = "mongodb://be9.asuscomm.com:27017/templog";
+var myCollection = "templog"
+var dbUrl = "mongodb://be9.asuscomm.com:27017/" + myCollection;
 
-var request = require("request")
+var request = require("request");
 
 const wHost = "http://api.openweathermap.org";
 const wpath = '/data/2.5/weather';
@@ -19,6 +19,7 @@ const wUrl = wHost + wpath + '?id=' + wId + '&UNITS=' + wUnits + '&APPID=' + wAp
 request({ url: wUrl, json: true }, function(error, response, weatherData) {
     if (!error && response.statusCode === 200) {
         //console.log(weatherData) // Print the json response
+        console.log("longitude: " + weatherData.coord.lon + " latitude: " + weatherData.coord.lat);
 
         MongoClient.connect(dbUrl, function(err, db) {
             if (err) throw err;
@@ -26,7 +27,7 @@ request({ url: wUrl, json: true }, function(error, response, weatherData) {
             //db.collection("templog").insertOne(myobj, function(err, res) {
             db.collection("templog").insertOne(weatherData, function(err, res) {
                 if (err) throw err;   
-                console.log("1 document inserted in collection 'templog'");
+                console.log("1 document inserted in collection: " + myCollection);
                 db.close();
             });
         })
