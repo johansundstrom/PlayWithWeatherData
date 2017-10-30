@@ -39,9 +39,19 @@ request({ url: wUrl, json: true }, function(error, response, weatherData) {
 
 
 
+/*
+var request = require("request")
 
+request({
+    url: wUrl,
+    json: true
+}, function (error, response, body) {
 
-
+    if (!error && response.statusCode === 200) {
+        console.log(body) // Print the json response
+    }
+})
+*/
 
 
 
